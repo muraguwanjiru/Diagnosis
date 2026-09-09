@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  diagnos-db:
+    image: postgres:15-alpine
+    container_name: diagnos_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: diagnos_admin
+      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: diagnos_clinical
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

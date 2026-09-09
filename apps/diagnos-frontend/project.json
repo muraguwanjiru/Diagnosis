@@ -1,0 +1,19 @@
+{
+  "name": "diagnos-frontend",
+  "projectType": "application",
+  "sourceRoot": "apps/diagnos-frontend",
+  "targets": {
+    "serve": {
+      "command": "npm run dev",
+      "options": {
+        "cwd": "apps/diagnos-frontend"
+      }
+    },
+    "build": {
+      "command": "npm run build",
+      "options": {
+        "cwd": "apps/diagnos-frontend"
+      }
+    }
+  }
+}

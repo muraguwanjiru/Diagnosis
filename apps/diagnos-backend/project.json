@@ -1,0 +1,14 @@
+{
+  "name": "diagnos-backend",
+  "projectType": "application",
+  "sourceRoot": "apps/diagnos-backend",
+  "targets": {
+    "serve": {
+    "command": "uvicorn main:app --reload --port 8080",
+
+      "options": {
+        "cwd": "apps/diagnos-backend"
+      }
+    }
+  }
+}
