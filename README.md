@@ -3,6 +3,7 @@
 **Diagnos** is an advanced clinical decision-support system designed to serve as a secondary validation tool for neuroradiologists classifying brain MRIs. By integrating computer vision into the clinical workflow, Diagnos acts as an automated safety net to reduce diagnostic fatigue, minimize cognitive bias, and enhance patient diagnostic accuracy.
 
 ## System Architecture Overview
+https://lucid.app/lucidchart/6d79fd83-1afe-4bcb-bbcf-67f9c734a4b1/edit?page=0_0#
 
 The platform is structured within an Nx Monorepo to maintain isolation and scalability between layers:
 
