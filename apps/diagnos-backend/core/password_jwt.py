@@ -1,7 +1,8 @@
 import os
+import hashlib
+import hmac
 from datetime import datetime, timedelta
 import jwt
-from passlib.context import CryptContext
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,13 +19,24 @@ if not SECRET_KEY or not ALGORITHM or not ACCESS_TOKEN_EXPIRE_MINUTES_RAW:
     )
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(ACCESS_TOKEN_EXPIRE_MINUTES_RAW)
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+# --- REPLACED PASSLIB WITH STANDARD HASHLIB SHA256 ---
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    # Use PBKDF2 with SHA256 (Built directly into Python, no buggy external packages required)
+    salt = os.urandom(16)
+    hashed = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+    return salt.hex() + ":" + hashed.hex()
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        salt_hex, hashed_hex = hashed_password.split(":")
+        salt = bytes.fromhex(salt_hex)
+        original_hash = bytes.fromhex(hashed_hex)
+        new_hash = hashlib.pbkdf2_hmac('sha256', plain_password.encode('utf-8'), salt, 100000)
+        return hmac.compare_digest(original_hash, new_hash)
+    except Exception:
+        return False
+# -----------------------------------------------------
 
 def create_access_token(data: dict) -> str:
     to_encode = data.copy()

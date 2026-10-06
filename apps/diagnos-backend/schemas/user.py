@@ -1,6 +1,12 @@
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from datetime import datetime
+from pydantic import BaseModel, Field
+
+class HiddenLoginResponse(BaseModel):
+    access_token: str = Field(..., include_in_schema=False)
+    token_type: str = Field(..., include_in_schema=False)
+
 
 class UserCreate(BaseModel):
     email: EmailStr = Field(..., description="The clinical email address of the radiologist")
