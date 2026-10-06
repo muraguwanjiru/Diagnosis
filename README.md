@@ -1,4 +1,4 @@
-# Diagnos
+# Diagnosis
 
 **Diagnos** is an advanced clinical decision-support system designed to serve as a secondary validation tool for neuroradiologists classifying brain MRIs. By integrating computer vision into the clinical workflow, Diagnos acts as an automated safety net to reduce diagnostic fatigue, minimize cognitive bias, and enhance patient diagnostic accuracy.
 
